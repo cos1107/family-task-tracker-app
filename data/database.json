@@ -2,22 +2,22 @@
   "users": [
     {
       "id": 1,
-      "name": "Cosine",
+      "name": "阿勛",
       "isAdmin": true
     },
     {
       "id": 2,
-      "name": "Iris",
+      "name": "陽陽",
       "isAdmin": false
     },
     {
       "id": 3,
-      "name": "Anna",
+      "name": "謙謙",
       "isAdmin": false
     },
     {
       "id": 4,
-      "name": "Rita",
+      "name": "小越",
       "isAdmin": false
     }
   ],
@@ -30,13 +30,7 @@
     },
     {
       "id": 2,
-      "name": "吃藥check",
-      "isCommon": false,
-      "createdAt": "2025-08-16T20:08:10.882Z"
-    },
-    {
-      "id": 3,
-      "name": "補充保健品",
+      "name": "daily英文",
       "isCommon": false,
       "createdAt": "2025-08-16T20:08:10.882Z"
     }
@@ -60,11 +54,15 @@
     },
     {
       "userId": 3,
-      "taskId": 3
+      "taskId": 2
     },
     {
       "userId": 4,
       "taskId": 1
+    },
+    {
+      "userId": 4,
+      "taskId": 2
     }
   ],
   "completions": [
@@ -86,7 +84,7 @@
     },
     {
       "userId": 3,
-      "taskId": 3,
+      "taskId": 2,
       "date": "2025-08-23",
       "completed": true,
       "week": 34,
@@ -104,7 +102,7 @@
     },
     {
       "userId": 2,
-      "taskId": 1,
+      "taskId": 2,
       "date": "2025-08-23",
       "completed": true,
       "week": 34,

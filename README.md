@@ -1,6 +1,6 @@
-# 姐姐妹妹動起來 - Task Tracker Application
+# Family Task Tracker App - 姐姐妹妹動起來
 
-A web application for tracking daily exercise and tasks across multiple users with progress monitoring and statistics.
+A family task tracking application for daily activities, specifically designed for tracking exercise and other family tasks.
 
 ## Features
 
@@ -14,47 +14,32 @@ A web application for tracking daily exercise and tasks across multiple users wi
 
 ## Deployment Options
 
-### Option 1: Deploy to Vercel (Recommended)
+### Option 1: Local Development (Full Functionality)
 
-This app is designed to work with Vercel's serverless functions for the backend API.
-
-1. **Install Vercel CLI** (if not already installed):
+1. **Clone the repository**:
 ```bash
-npm install -g vercel
+git clone https://github.com/YOUR_USERNAME/family-task-tracker-app.git
+cd family-task-tracker-app
 ```
 
-2. **Deploy to Vercel**:
-```bash
-cd task-tracker-app
-vercel
-```
-
-3. **Follow the prompts**:
-   - Link to existing project or create new
-   - Choose project settings (accept defaults)
-   - Deploy will complete automatically
-
-4. **Access your app**:
-   - Vercel will provide a URL like: `https://your-app-name.vercel.app`
-
-### Option 2: Local Development
-
-1. **Install dependencies**:
+2. **Install dependencies**:
 ```bash
 npm install
 ```
 
-2. **Start the development server**:
+3. **Start the development server**:
 ```bash
 npm start
 ```
 
-3. **Open browser**:
+4. **Open browser**:
 ```
 http://localhost:3000
 ```
 
-## GitHub Repository Setup
+### Option 2: GitHub Pages (Frontend Only)
+
+**Note**: GitHub Pages only serves the static frontend. For full functionality with data persistence, you'll need to run the backend locally or deploy it separately.
 
 1. **Push to GitHub**:
 ```bash
@@ -63,35 +48,53 @@ git commit -m "Initial commit"
 git push origin main
 ```
 
-2. **Connect Vercel to GitHub**:
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-   - Vercel will auto-deploy on every push to main
+2. **Enable GitHub Pages**:
+   - Go to your repository Settings > Pages
+   - Under "Build and deployment", select "GitHub Actions"
+   - The app will be available at: `https://YOUR_USERNAME.github.io/family-task-tracker-app`
 
 ## Important Notes
 
-⚠️ **Cannot deploy to GitHub Pages**: This app requires a backend server for API calls. GitHub Pages only serves static files and cannot run the Node.js backend.
+⚠️ **GitHub Pages Limitation**: GitHub Pages only serves static files. The backend API won't work on GitHub Pages.
 
-✅ **Use Vercel instead**: Vercel supports serverless functions which handle the API endpoints automatically.
+✅ **Solution**: The app is configured to work in both environments:
+- **Local Development**: Full functionality with Express backend at `http://localhost:3000`
+- **GitHub Pages**: Static frontend only (you can view the UI but data won't persist)
 
 ## Project Structure
 
 ```
-task-tracker-app/
-├── api/
-│   └── index.js        # Serverless API endpoints
-├── public/             # Static files (if needed)
-├── css/
-│   └── styles.css      # Application styles
-├── js/
-│   └── app.js          # Frontend JavaScript
+family-task-tracker-app/
+├── backend/
+│   └── server.js       # Express server with API endpoints
+├── public/             # Static files (served by both local and GitHub Pages)
+│   ├── css/
+│   │   └── styles.css  # Application styles
+│   ├── js/
+│   │   └── app.js      # Frontend JavaScript
+│   └── index.html      # Main HTML file
 ├── data/
-│   └── database.json   # Data storage (local only)
-├── index.html          # Main HTML file
+│   └── database.json   # Local data storage
+├── .github/
+│   └── workflows/
+│       └── deploy.yml  # GitHub Actions deployment
 ├── package.json        # Dependencies
-├── vercel.json         # Vercel configuration
 └── README.md           # This file
 ```
+
+## How It Works
+
+### Local Development
+- Express server (`backend/server.js`) serves the `public` folder
+- API endpoints handle all data operations
+- Data persists in `data/database.json`
+- Full functionality available
+
+### GitHub Pages
+- Only the `public` folder is deployed
+- Frontend works as a static site
+- API calls will fail (no backend)
+- Good for UI demonstration
 
 ## Default Users
 
@@ -102,7 +105,7 @@ task-tracker-app/
 
 ## API Endpoints
 
-The app uses the following API endpoints (handled by `/api/index.js`):
+The app uses the following API endpoints (handled by `backend/server.js`):
 
 - `GET /api/users` - Get all users
 - `POST /api/users` - Create new user
@@ -113,34 +116,41 @@ The app uses the following API endpoints (handled by `/api/index.js`):
 - `GET /api/statistics` - Get monthly statistics
 - `GET /api/user-tasks` - Get user-task assignments
 
-## Data Persistence
-
-- **Local Development**: Uses `data/database.json` file
-- **Vercel Deployment**: Uses in-memory storage (data resets on serverless function restart)
-- **Production Recommendation**: Consider using a database service like MongoDB Atlas or PostgreSQL for persistent storage
-
 ## Tech Stack
 
 - **Frontend**: Vanilla JavaScript, HTML5, CSS3
-- **Backend**: Node.js with Express (Serverless functions)
-- **Deployment**: Vercel
-- **Version Control**: Git & GitHub
+- **Backend**: Node.js with Express
+- **Data Storage**: JSON file-based database
+- **Deployment**: 
+  - Local: Node.js server
+  - GitHub Pages: Static hosting (frontend only)
+- **CI/CD**: GitHub Actions
 
 ## Troubleshooting
 
 ### "無法載入用戶列表，請確認伺服器是否運行中" Error
 
-This means the frontend cannot reach the backend API. Solutions:
+This means the frontend cannot reach the backend API:
 
-1. **For Vercel**: Make sure you deployed with `vercel` command, not to GitHub Pages
-2. **For Local**: Make sure you ran `npm start` to start the server
+1. **For Local**: Make sure you ran `npm start` to start the server on port 3000
+2. **For GitHub Pages**: This is expected - GitHub Pages can't run the backend
 3. **Check Console**: Open browser DevTools to see specific error messages
 
-### Data Not Persisting on Vercel
+### Making It Work on Both Local and GitHub Pages
 
-Vercel serverless functions use temporary storage. For persistent data:
-1. Use a cloud database (MongoDB Atlas, PostgreSQL, etc.)
-2. Or accept that data resets (good for demos)
+To make the app work in both environments, you could:
+
+1. **Modify `app.js`** to detect the environment and use appropriate API URLs
+2. **Use a cloud backend** service (Vercel, Heroku, Render) for the API
+3. **Use localStorage** for client-side data persistence (no server needed)
+
+## Future Enhancements
+
+- Cloud database integration for persistent storage
+- User authentication
+- Email notifications
+- Data export functionality
+- Progressive Web App (PWA) support
 
 ## Contributing
 
@@ -156,4 +166,4 @@ This project is open source and available under the MIT License.
 
 ## Support
 
-For issues or questions, please open an issue on GitHub: https://github.com/cos1107/task-tracker-app/issues
+For issues or questions, please open an issue on GitHub.

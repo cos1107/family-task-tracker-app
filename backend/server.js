@@ -10,7 +10,7 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 const DATA_FILE = path.join(__dirname, '../data/database.json');
 

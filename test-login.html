@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Login</title>
+</head>
+<body>
+    <h1>Testing User Fetch</h1>
+    <button onclick="testFetch()">Test Fetch Users</button>
+    <div id="result"></div>
+    
+    <script>
+        async function testFetch() {
+            const resultDiv = document.getElementById('result');
+            try {
+                console.log('Fetching from /api/users...');
+                const response = await fetch('http://localhost:3000/api/users');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const users = await response.json();
+                console.log('Users received:', users);
+                
+                resultDiv.innerHTML = '<h2>Users loaded successfully:</h2>' + 
+                    '<pre>' + JSON.stringify(users, null, 2) + '</pre>';
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = '<p style="color: red;">Error: ' + error.message + '</p>';
+            }
+        }
+        
+        // Auto-test on load
+        window.addEventListener('DOMContentLoaded', testFetch);
+    </script>
+</body>
+</html>
