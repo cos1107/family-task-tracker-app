@@ -1,4 +1,6 @@
-// Updated with Chinese user names - Force redeploy
+// Updated with Chinese user names - Force redeploy v2 - 2025-08-25
+// IMPORTANT: This API uses Upstash Redis for persistence
+// After code changes, call /api/reset-database to update stored data
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
