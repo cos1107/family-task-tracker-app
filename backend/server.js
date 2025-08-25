@@ -34,10 +34,10 @@ async function loadData() {
   } catch (error) {
     const defaultData = {
       users: [
-        { id: 1, name: "Cosine", isAdmin: true },
-        { id: 2, name: "Iris", isAdmin: false },
-        { id: 3, name: "Anna", isAdmin: false },
-        { id: 4, name: "Rita", isAdmin: false }
+        { id: 1, name: "阿勛", isAdmin: true },
+        { id: 2, name: "陽陽", isAdmin: false },
+        { id: 3, name: "謙謙", isAdmin: false },
+        { id: 4, name: "小越", isAdmin: false }
       ],
       tasks: [
         { id: 1, name: "每日運動", isCommon: true, createdAt: new Date().toISOString() }

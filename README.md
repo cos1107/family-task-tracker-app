@@ -98,10 +98,10 @@ family-task-tracker-app/
 
 ## Default Users
 
-- **Cosine** (Admin)
-- **Iris** (Regular user)
-- **Anna** (Regular user)
-- **Rita** (Regular user)
+- **阿勛** (Admin)
+- **陽陽** (Regular user)
+- **謙謙** (Regular user)
+- **小越** (Regular user)
 
 ## API Endpoints
 

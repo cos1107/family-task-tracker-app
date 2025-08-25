@@ -22,10 +22,10 @@ async function resetDatabase() {
     // New clean data structure
     const newData = {
       users: [
-        { id: 1, name: "Cosine", isAdmin: true },
-        { id: 2, name: "Iris", isAdmin: false },
-        { id: 3, name: "Anna", isAdmin: false },
-        { id: 4, name: "Rita", isAdmin: false }
+        { id: 1, name: "阿勛", isAdmin: true },
+        { id: 2, name: "陽陽", isAdmin: false },
+        { id: 3, name: "謙謙", isAdmin: false },
+        { id: 4, name: "小越", isAdmin: false }
       ],
       tasks: [
         { id: 1, name: "每日運動", isCommon: true, createdAt: new Date().toISOString() },
@@ -38,13 +38,13 @@ async function resetDatabase() {
         { userId: 2, taskId: 1 },
         { userId: 3, taskId: 1 },
         { userId: 4, taskId: 1 },
-        // 吃藥check only for Iris
+        // 吃藥check only for 陽陽
         { userId: 2, taskId: 2 },
-        // 每日保健品 only for Anna
+        // 每日保健品 only for 謙謙
         { userId: 3, taskId: 3 }
       ],
       completions: [
-        // Cosine - 每日運動 on 8/18, 8/19, 8/21
+        // 阿勛 - 每日運動 on 8/18, 8/19, 8/21
         {
           userId: 1,
           taskId: 1,
@@ -69,7 +69,7 @@ async function resetDatabase() {
           week: getWeekNumber(new Date("2025-08-21")),
           createdAt: new Date().toISOString()
         },
-        // Iris - 每日運動 on 8/17
+        // 陽陽 - 每日運動 on 8/17
         {
           userId: 2,
           taskId: 1,
@@ -78,7 +78,7 @@ async function resetDatabase() {
           week: getWeekNumber(new Date("2025-08-17")),
           createdAt: new Date().toISOString()
         },
-        // Rita - 每日運動 on 8/18, 8/21
+        // 小越 - 每日運動 on 8/18, 8/21
         {
           userId: 4,
           taskId: 1,
