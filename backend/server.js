@@ -440,6 +440,95 @@ app.delete('/api/tasks/:taskId', async (req, res) => {
   res.json({ success: true });
 });
 
+// Database viewer endpoints
+app.get('/api/database', async (req, res) => {
+  try {
+    const data = await loadData();
+    res.json({
+      success: true,
+      stats: {
+        users: data.users.length,
+        tasks: data.tasks.length,
+        userTasks: data.userTasks.length,
+        completions: data.completions.length
+      },
+      data: data
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.post('/api/update-database', async (req, res) => {
+  try {
+    const newData = req.body;
+    
+    // Validate the structure
+    if (!newData.users || !newData.tasks || !newData.userTasks || !newData.completions) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Invalid data structure. Must include users, tasks, userTasks, and completions arrays.' 
+      });
+    }
+    
+    // Save the new data
+    await saveData(newData);
+    
+    res.json({ 
+      success: true, 
+      message: 'Database updated successfully',
+      stats: {
+        users: newData.users.length,
+        tasks: newData.tasks.length,
+        userTasks: newData.userTasks.length,
+        completions: newData.completions.length
+      }
+    });
+  } catch (error) {
+    console.error('Error updating database:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.post('/api/reset-database', async (req, res) => {
+  try {
+    const defaultData = {
+      users: [
+        { id: 1, name: "阿勛", isAdmin: true },
+        { id: 2, name: "陽陽", isAdmin: false },
+        { id: 3, name: "謙謙", isAdmin: false },
+        { id: 4, name: "小越", isAdmin: false }
+      ],
+      tasks: [
+        { id: 1, name: "每日運動", isCommon: true, createdAt: new Date().toISOString() }
+      ],
+      userTasks: [
+        { userId: 1, taskId: 1 },
+        { userId: 2, taskId: 1 },
+        { userId: 3, taskId: 1 },
+        { userId: 4, taskId: 1 }
+      ],
+      completions: []
+    };
+    
+    await saveData(defaultData);
+    
+    res.json({ 
+      success: true, 
+      message: 'Database reset successfully',
+      data: {
+        users: defaultData.users.length,
+        tasks: defaultData.tasks.length,
+        userTasks: defaultData.userTasks.length,
+        completions: defaultData.completions.length
+      }
+    });
+  } catch (error) {
+    console.error('Error resetting database:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 function getWeekNumber(date) {
   const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
   const dayNum = d.getUTCDay() || 7;

@@ -2,37 +2,43 @@
   "users": [
     {
       "id": 1,
-      "name": "阿勛",
+      "name": "����",
       "isAdmin": true
     },
     {
       "id": 2,
-      "name": "陽陽",
+      "name": "����",
       "isAdmin": false
     },
     {
       "id": 3,
-      "name": "謙謙",
+      "name": "����",
       "isAdmin": false
     },
     {
       "id": 4,
-      "name": "小越",
+      "name": "�p�V",
       "isAdmin": false
     }
   ],
   "tasks": [
     {
       "id": 1,
-      "name": "每日運動",
+      "name": "�C��B��",
       "isCommon": true,
       "createdAt": "2025-08-16T20:08:10.882Z"
     },
     {
       "id": 2,
-      "name": "daily英文",
+      "name": "daily�^��",
       "isCommon": false,
       "createdAt": "2025-08-16T20:08:10.882Z"
+    },
+    {
+      "id": 3,
+      "name": "每日運動",
+      "isCommon": true,
+      "createdAt": "2025-08-25T13:14:31.092Z"
     }
   ],
   "userTasks": [
@@ -63,6 +69,22 @@
     {
       "userId": 4,
       "taskId": 2
+    },
+    {
+      "userId": 1,
+      "taskId": 3
+    },
+    {
+      "userId": 2,
+      "taskId": 3
+    },
+    {
+      "userId": 3,
+      "taskId": 3
+    },
+    {
+      "userId": 4,
+      "taskId": 3
     }
   ],
   "completions": [

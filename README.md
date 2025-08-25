@@ -144,6 +144,50 @@ To make the app work in both environments, you could:
 2. **Use a cloud backend** service (Vercel, Heroku, Render) for the API
 3. **Use localStorage** for client-side data persistence (no server needed)
 
+## Database Management
+
+### Database Viewer (`/database-viewer.html`)
+
+The app includes a powerful database management interface accessible at `http://localhost:3000/database-viewer.html` when running locally.
+
+**Features:**
+- 📊 **Real-time Statistics**: View counts of users, tasks, assignments, and completions
+- 👥 **Data Tables**: Browse all users, tasks, assignments, and completion records
+- 📝 **Live Editor**: Edit database JSON directly with validation
+- 💾 **Import/Export**: Download database backups or upload new data
+- 🔄 **Reset Function**: Restore default database structure
+- ✅ **Validation**: Built-in JSON structure validation
+
+**How to Use:**
+1. Visit `http://localhost:3000/database-viewer.html`
+2. Use the JSON editor to modify database structure
+3. Click "Validate" to check your JSON format
+4. Click "Save to Database" to apply changes
+5. Use "Download JSON" to backup your data
+
+### Available API Endpoints
+
+**Database Management:**
+- `GET /api/database` - Retrieve complete database with statistics
+- `POST /api/update-database` - Replace entire database with new data
+- `POST /api/reset-database` - Reset database to default state
+
+**Data Operations:**
+- `GET /api/users` - Get all users
+- `POST /api/users` - Create new user  
+- `GET /api/tasks` - Get all tasks
+- `POST /api/tasks` - Create new task
+- `GET /api/completions/:userId` - Get user completions
+- `POST /api/completions` - Save task completion
+- `GET /api/statistics` - Get monthly statistics
+
+### Achievement System Updates
+
+**Heart Display Rule (成就圖表):**
+- Red heart ❤️ appears when: `completedDays >= Math.ceil(currentDate / 2)`
+- Text shows "達到X天運動" instead of "連續X天運動"
+- Example: On August 25th, users need ≥13 days of exercise to earn a heart
+
 ## Future Enhancements
 
 - Cloud database integration for persistent storage
